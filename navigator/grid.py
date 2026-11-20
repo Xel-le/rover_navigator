@@ -6,7 +6,7 @@ class Grid:
         self._start_coordinates = None
         self._target_coordinates = None
         self._blocked_coordinates = None
-        self.set_path_to_file = path_to_file
+        self.path_to_file = path_to_file
 
     def __str__(self):
         return f"Grid location: {self._path_to_file}\nGrid height: {self._map_height}\nGrid width: {self._map_width}\nStarting point is located at {self._start_coordinates}\nTarget point is located at {self._target_coordinates}"
@@ -16,7 +16,7 @@ class Grid:
         return self._path_to_file
 
     @path_to_file.setter
-    def set_path_to_file(self, path_to_file):
+    def path_to_file(self, path_to_file):
         allowed_symbols = ["#", ".", "S", "T"]
         start_count = 0
         start_coordinates = []
@@ -34,13 +34,13 @@ class Grid:
                         if _ not in allowed_symbols:
                             raise ValueError(f"Grid contains symbols that are not allowed")
                         elif _ == "T": 
-                            if target_count + 1 != 1:
+                            if target_count != 0:
                                 raise ValueError(f"Grid contains more than one target points")
                             target_coordinates.append(char_count + 1)
                             target_coordinates.append(map_height + 1)
                             target_count += 1
                         elif _ == "S": 
-                            if start_count + 1 != 1:
+                            if start_count != 0:
                                 raise ValueError(f"Grid contains more than one starting points")
                             start_coordinates.append(char_count + 1)
                             start_coordinates.append(map_height + 1)
@@ -51,6 +51,8 @@ class Grid:
                     map_width.add(char_count)
                     char_count = 0
                     map_height += 1
+            if len(map_width) == 0:
+                raise ValueError(f"Grid is empty")
             if len(map_width) != 1:
                 raise ValueError(f"Grid has uneven width")
             if start_count == 0:
@@ -64,7 +66,7 @@ class Grid:
         self._map_width = int("".join(map(str, map_width)))
         self._start_coordinates = start_coordinates
         self._target_coordinates = target_coordinates
-        self._blocked_coordinates = blocked_coordinates
+        self._blocked_coordinates = tuple(blocked_coordinates)
 
     @property
     def height(self) -> int:
