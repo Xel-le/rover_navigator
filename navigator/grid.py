@@ -85,5 +85,5 @@ class Grid:
         return self._target_coordinates
 
     @property
-    def blocked_coordinates(self) -> list:
+    def blocked_coordinates(self) -> tuple:
         return self._blocked_coordinates
