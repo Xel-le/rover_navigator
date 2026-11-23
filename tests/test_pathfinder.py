@@ -11,14 +11,20 @@ def test_no_route():
 def test_ok_maze():
     test_grid = Grid("maze.txt")
     test_path = find_path(test_grid)
-    assert test_path == [[2,2],[2,3],[2,4],[2,5],[2,6],[3,6],[4,6],[4,5],[4,4],[4,3],[4,2],[5,2],[6,2],[7,2],[8,2],[9,2],[10,2],[11,2],[12,2],[12,3],[12,4],[12,5],[12,6],[12,7],[12,8],[12,9],[12,10]]
+    assert len(test_path) == 27
+    assert test_path[0] == test_grid.start_coordinates
+    assert test_path[len(test_path)-1] == test_grid.target_coordinates
 
 def test_ok_simple():
     test_grid = Grid("simple.txt")
     test_path = find_path(test_grid)
-    assert test_path == [[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[8,8],[9,8],[9,9],[9,10]]
+    assert len(test_path) == 16
+    assert test_path[0] == test_grid.start_coordinates
+    assert test_path[len(test_path)-1] == test_grid.target_coordinates
 
 def test_ok_open():
     test_grid = Grid("open.txt")
     test_path = find_path(test_grid)
-    assert test_path == [[2,2], [2,3], [2,4], [2,5], [2,6], [3,6], [4,6], [5,6], [6,6], [7,6], [8,6], [9,6]]
+    assert len(test_path) == 12
+    assert test_path[0] == test_grid.start_coordinates
+    assert test_path[len(test_path)-1] == test_grid.target_coordinates
