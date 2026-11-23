@@ -14,6 +14,12 @@ def test_ok_maze():
     assert len(test_path) == 27
     assert test_path[0] == test_grid.start_coordinates
     assert test_path[len(test_path)-1] == test_grid.target_coordinates
+    for cell in test_path:
+        assert cell not in test_grid.blocked_coordinates
+    for n in range(len(test_path)-1):
+        dx = abs(test_path[n][0] - test_path[n+1][0])
+        dy = abs(test_path[n][1] - test_path[n+1][1])
+        assert dx + dy == 1
 
 def test_ok_simple():
     test_grid = Grid("simple.txt")
@@ -21,6 +27,12 @@ def test_ok_simple():
     assert len(test_path) == 16
     assert test_path[0] == test_grid.start_coordinates
     assert test_path[len(test_path)-1] == test_grid.target_coordinates
+    for cell in test_path:
+        assert cell not in test_grid.blocked_coordinates
+    for n in range(len(test_path)-1):
+        dx = abs(test_path[n][0] - test_path[n+1][0])
+        dy = abs(test_path[n][1] - test_path[n+1][1])
+        assert dx + dy == 1
 
 def test_ok_open():
     test_grid = Grid("open.txt")
@@ -28,3 +40,9 @@ def test_ok_open():
     assert len(test_path) == 12
     assert test_path[0] == test_grid.start_coordinates
     assert test_path[len(test_path)-1] == test_grid.target_coordinates
+    for cell in test_path:
+        assert cell not in test_grid.blocked_coordinates
+    for n in range(len(test_path)-1):
+        dx = abs(test_path[n][0] - test_path[n+1][0])
+        dy = abs(test_path[n][1] - test_path[n+1][1])
+        assert dx + dy == 1
