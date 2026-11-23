@@ -11,18 +11,18 @@ class Rover:
     def __init__(self, grid):
         self._grid = grid
         self._direction = 0
-        self._position = list(self._grid.start_coordinates)
+        self._position = self._grid.start_coordinates
 
     def __str__(self):
         return f"{self._position}, facing {self.DICT_DIRECTIONS[self._direction]}" 
 
     @property
-    def direction(self):
+    def direction(self) -> int:
         return self._direction
 
     @property
-    def position(self):
-        return tuple(self._position)
+    def position(self) -> list:
+        return self._position
 
     def move(self, commands_list):
         movement_vectors = {

@@ -43,4 +43,4 @@ def test_normal():
     test_rover.move("RFFFFF")
     test_rover.move("RFFFBBFFFFF")
     test_rover.move("LFF")
-    assert test_rover.position == (9, 8)
+    assert test_rover.position == [9, 8]

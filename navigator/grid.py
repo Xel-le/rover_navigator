@@ -6,6 +6,7 @@ class Grid:
         self._start_coordinates = None
         self._target_coordinates = None
         self._blocked_coordinates = None
+        self._open_coordinates = None
         self.path_to_file = path_to_file
 
     def __str__(self):
@@ -23,6 +24,7 @@ class Grid:
         target_count = 0
         target_coordinates = []
         blocked_coordinates = []
+        open_coordinates = []
         map_height = 0
         char_count = 0
         map_width = set()
@@ -47,6 +49,8 @@ class Grid:
                             start_count += 1
                         elif _ == "#":
                             blocked_coordinates.append([char_count + 1, map_height + 1])
+                        elif _ == ".":
+                            open_coordinates.append([char_count + 1, map_height + 1])
                         char_count += 1
                     map_width.add(char_count)
                     char_count = 0
@@ -66,7 +70,8 @@ class Grid:
         self._map_width = int("".join(map(str, map_width)))
         self._start_coordinates = start_coordinates
         self._target_coordinates = target_coordinates
-        self._blocked_coordinates = tuple(blocked_coordinates)
+        self._blocked_coordinates = blocked_coordinates
+        self._open_coordinates = open_coordinates
 
     @property
     def height(self) -> int:
@@ -85,5 +90,9 @@ class Grid:
         return self._target_coordinates
 
     @property
-    def blocked_coordinates(self) -> tuple:
+    def blocked_coordinates(self) -> list:
         return self._blocked_coordinates
+
+    @property
+    def open_coordinates(self) -> list:
+        return self._open_coordinates
