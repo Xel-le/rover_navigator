@@ -7,7 +7,7 @@ def path_to_commands(path: list) -> str:
         }
     command_list = ""
     direction = int()
-    for n in range(len(path)-2):
+    for n in range(len(path)-1):
         if direction == 0:
             if path[n][0] + movement_vectors[0][0] == path[n+1][0] and path[n][1] + movement_vectors[0][1] == path[n+1][1]:
                 command_list += "F"
