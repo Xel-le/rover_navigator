@@ -4,6 +4,7 @@ from navigator.pathfinder import find_path
 from navigator.commands import path_to_commands
 import argparse
 from sys import exit
+import time
 
 def main():
     parser = argparse.ArgumentParser(description="Rover Navigator App")
@@ -20,6 +21,7 @@ def main():
     path = find_path(grid)
     route = path_to_commands(path)
     rover = Rover(grid)
+    print("The initial rover position is", rover, f"\n")
     rover.move(route)
     file_lines = int()
     file_characters = int()
@@ -34,8 +36,10 @@ def main():
                     new_map += f"X"
                 else:
                     new_map += f"{c}"
-        new_map += f"\n"
-    print(new_map)
+    for char in new_map:
+        print(char, end="", flush=True)
+        time.sleep(0.05)
+    print(f"\n\n"+"The resulting rover position is",rover)
     
 
 
